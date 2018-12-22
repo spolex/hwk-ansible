@@ -168,28 +168,28 @@ blueprint_dynamic:                                        # properties for the d
   - host_group: "hdp-manager"
     services:
       - AMBARI_SERVER
-      - INFRA_SOLR
-      - METRICS_GRAFANA
+#      - INFRA_SOLR
+#      - METRICS_GRAFANA
   - host_group: "hdp-edge"
     services:
-       - KNOX_GATEWAY
+#       - KNOX_GATEWAY
 #       - RANGER_ADMIN
 #       - RANGER_USERSYNC
        - ZEPPELIN_MASTER
        - YARN_REGISTRY_DNS
-    clients: ['ATLAS_CLIENT','ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT','SPARK2_CLIENT']
   - host_group: "hdp-master-01"
     services:
       - ZOOKEEPER_SERVER
       - NAMENODE
-      - HBASE_MASTER
+#      - HBASE_MASTER
       - APP_TIMELINE_SERVER
       - HIVE_SERVER
       - HIVE_METASTORE
       - METRICS_MONITOR
-      - ACTIVITY_ANALYZER
-      - ACTIVITY_EXPLORER
-      - HST_AGENT
+#      - ACTIVITY_ANALYZER
+#      - ACTIVITY_EXPLORER
+#      - HST_AGENT
       - KAFKA_BROKER
       
   - host_group: "hdp-master-02"
@@ -198,9 +198,9 @@ blueprint_dynamic:                                        # properties for the d
       - SECONDARY_NAMENODE
       - SPARK2_JOBHISTORYSERVER
       - METRICS_MONITOR
-      - HST_SERVER
-      - ACTIVITY_ANALYZER
-      - HST_AGENT
+#      - HST_SERVER
+#      - ACTIVITY_ANALYZER
+#      - HST_AGENT
       - KAFKA_BROKER
       - TIMELINE_READER
   - host_group: "hdp-master-03"
@@ -208,20 +208,20 @@ blueprint_dynamic:                                        # properties for the d
       - ZOOKEEPER_SERVER
       - RESOURCEMANAGER
       - HISTORYSERVER
-      - OOZIE_SERVER
+#      - OOZIE_SERVER
       - METRICS_COLLECTOR
       - METRICS_MONITOR
-      - ACTIVITY_ANALYZER
-      - HST_AGENT
-      - KAFKA_BROKER
-      - ATLAS_SERVER
+#      - ACTIVITY_ANALYZER
+#      - HST_AGENT
+#      - KAFKA_BROKER
+#      - ATLAS_SERVER
   - host_group: "hdp-worker"
     services:
       - DATANODE
       - NODEMANAGER
       - METRICS_MONITOR
-      - HST_AGENT
-      - HBASE_REGIONSERVER
+#      - HST_AGENT
+#      - HBASE_REGIONSERVER
 
 
 
