@@ -184,14 +184,14 @@ blueprint_dynamic:                                        # properties for the d
       - METRICS_MONITOR
       - TIMELINE_READER
       - METRICS_COLLECTOR
-	  - RESOURCEMANAGER
-	  - HISTORYSERVER
+      - RESOURCEMANAGER
+      - HISTORYSERVER
   - host_group: "hdp-worker"
     services:
       - DATANODE
       - NODEMANAGER
       - METRICS_MONITOR
-	  - ZOOKEEPER_SERVER
+      - ZOOKEEPER_SERVER
 
 
 ############################
