@@ -183,7 +183,7 @@ blueprint_dynamic:                                        # properties for the d
       - SPARK2_JOBHISTORYSERVER
       - METRICS_MONITOR
       - TIMELINE_READER
-	  - METRICS_COLLECTOR
+      - METRICS_COLLECTOR
 	  - RESOURCEMANAGER
 	  - HISTORYSERVER
   - host_group: "hdp-worker"
@@ -192,8 +192,6 @@ blueprint_dynamic:                                        # properties for the d
       - NODEMANAGER
       - METRICS_MONITOR
 	  - ZOOKEEPER_SERVER
-
-
 
 
 ############################
