@@ -3,7 +3,7 @@
 ## cluster configuration ##
 ###########################
 
-cluster_name: 'mytestcluster'
+cluster_name: 'hdfs-cluster'
 
 ambari_version: '2.7.3.0'                                 # must be the 4-part full version number
 
