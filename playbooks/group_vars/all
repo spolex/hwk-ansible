@@ -83,7 +83,7 @@ database_options:
 security: 'mit-kdc'                                          # can be set to 'none', 'mit-kdc' or 'active-directory'
 security_options:
   external_hostname: 'ldap-server.eastonlab.org'                                   # if this is empty, Ansible will install and prepare the MIT KDC on the Ambari node
-  realm: 'EASTONLAB-ORG'
+  realm: 'EASTONLAB.ORG'
   admin_principal: 'hdfs_admin'                                # the Kerberos principal that has the permissions to create new users (don't append the realm)
   admin_password: "{{ default_password }}"
   kdc_master_key: "{{ default_password }}"                # only used when security is set to 'mit-kdc'
