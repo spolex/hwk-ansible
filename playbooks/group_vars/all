@@ -43,7 +43,7 @@ oraclejdk_options:                                        # only used when java 
 ## database configuration ##
 ############################
 
-database: 'embedded'                                      # can be set to 'embedded', 'postgres', 'mysql' or 'mariadb'
+database: 'mysql'                                      # can be set to 'embedded', 'postgres', 'mysql' or 'mariadb'
 database_options:
   add_repo: yes                                           # if set to 'no', Ansible will not add a repo file (containing the public URL)
   external_hostname: ''                                   # if this is empty, Ansible will install and prepare the databases on the ambari-server node
@@ -165,33 +165,85 @@ cluster_template_file: 'cluster_template.j2'              # the cluster creation
 blueprint_name: '{{ cluster_name }}_blueprint'            # the name of the blueprint as it will be stored in Ambari
 blueprint_file: 'blueprint_dynamic.j2'                    # the blueprint JSON file - 'blueprint_dynamic.j2' is a Jinja2 template that generates the required JSON
 blueprint_dynamic:                                        # properties for the dynamic blueprint - these are only used by the 'blueprint_dynamic.j2' template to generate the JSON
-  - host_group: "hdp-manager"
-    services:
-      - AMBARI_SERVER
-      - ZEPPELIN_MASTER
-      - YARN_REGISTRY_DNS
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT','SPARK2_CLIENT']
-  - host_group: "hdp-master-01"
+
+blueprint_dynamic:                                              # properties for the dynamic blueprint - these are only used by the 'blueprint_dynamic.j2' template to generate the JSON
+  - host_group: "hdp-masternode-01"
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT', 'HBASE_CLIENT', 'ATLAS_CLIENT']
     services:
       - ZOOKEEPER_SERVER
       - NAMENODE
-      - APP_TIMELINE_SERVER
+      - ZKFC
+      - JOURNALNODE
+      - RESOURCEMANAGER
+      - HBASE_MASTER
       - HIVE_SERVER
       - HIVE_METASTORE
-      - METRICS_MONITOR
-      - SECONDARY_NAMENODE
-      - SPARK2_JOBHISTORYSERVER
-      - METRICS_MONITOR
-      - TIMELINE_READER
-      - METRICS_COLLECTOR
-      - RESOURCEMANAGER
+      - DRUID_BROKER
+      - OOZIE_SERVER
       - HISTORYSERVER
+      - SPARK2_JOBHISTORYSERVER
+      - KAFKA_BROKER
+      - ACTIVITY_ANALYZER
+      - HST_AGENT
+      - METRICS_MONITOR
+      - LOGSEARCH_LOGFEEDER
+  - host_group: "hdp-masternode-02"
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT', 'HBASE_CLIENT', 'ATLAS_CLIENT']
+    services:
+      - ZOOKEEPER_SERVER
+      - NAMENODE
+      - ZKFC
+      - JOURNALNODE
+      - RESOURCEMANAGER
+      - APP_TIMELINE_SERVER
+      - YARN_REGISTRY_DNS
+      - TIMELINE_READER
+      - HBASE_MASTER
+      - HIVE_SERVER
+      - HIVE_METASTORE
+      - DRUID_BROKER
+      - KAFKA_BROKER
+      - ACTIVITY_ANALYZER
+      - HST_AGENT
+      - METRICS_MONITOR
+      - LOGSEARCH_LOGFEEDER
+  - host_group: "hdp-management"
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT', 'HBASE_CLIENT', 'ATLAS_CLIENT']
+    services:
+      - RANGER_ADMIN
+      - RANGER_USERSYNC
+      - ZOOKEEPER_SERVER
+      - JOURNALNODE
+      - DRUID_COORDINATOR
+      - DRUID_OVERLORD
+      - DRUID_ROUTER
+      - SUPERSET
+      - ATLAS_SERVER
+      - KNOX_GATEWAY
+      - ZEPPELIN_MASTER
+      - AMBARI_SERVER
+      - INFRA_SOLR
+      - LOGSEARCH_SERVER
+      - HST_SERVER
+      - ACTIVITY_ANALYZER
+      - ACTIVITY_EXPLORER
+      - HST_AGENT
+      - METRICS_COLLECTOR
+      - METRICS_GRAFANA
+      - METRICS_MONITOR
+      - LOGSEARCH_LOGFEEDER
   - host_group: "hdp-worker"
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT', 'HBASE_CLIENT', 'ATLAS_CLIENT']
     services:
       - DATANODE
       - NODEMANAGER
+      - HBASE_REGIONSERVER
+      - DRUID_HISTORICAL
+      - DRUID_MIDDLEMANAGER
+      - HST_AGENT
       - METRICS_MONITOR
-      - ZOOKEEPER_SERVER
+      - LOGSEARCH_LOGFEEDER
+
 
 
 ############################
