@@ -1,18 +1,9 @@
 - import_playbook: "set_variables.yml"
 
-- name: Load the Ambari Server schema (mysql)
+- name: Create a new database with name 'prueba'
   mysql_db:
-    name: "{{ database_options.ambari_db_name }}"
-    login_host: "{{ database_options.external_hostname|default(ansible_fqdn,true) }}"
-    login_port: "{{ mysql_port }}"
-    login_user: "{{ database_options.ambari_db_username }}"
-    login_password: "{{ database_options.ambari_db_password }}"
-    state: import
-    target: /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
-    register: import_results
-    ignore_errors: true
-
-- name: Fail if the mysql schema could not be loaded
-  fail:
-    msg: Schema could not be loaded. Error is {{ import_results.msg }}!
-    when: import_results is failed and not import_results.msg is search("Table .* already exists")
+    name: prueba
+    login_host: dnsserver1.eastonlab.org
+    login_user: ambari
+    login_password: bigdata
+    state: present
