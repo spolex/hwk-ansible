@@ -108,7 +108,7 @@
             login_user: "{{ database_options.ambari_db_username }}"
             login_password: "{{ database_options.ambari_db_password }}"
             state: import
-            target: /home/hadoop/Ambari-DDL-MySQL-CREATE.sql
+            target: /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql
           register: import_results
           ignore_errors: true
 
