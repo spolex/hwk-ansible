@@ -116,7 +116,7 @@
           fail:
             msg: Schema could not be loaded. Error is {{ import_results.msg }}!
           when: import_results is failed and not import_results.msg is search("Table .* already exists")
-      when: database == "mysql" or database == "mariadb"
+      when: database == "mysql" or database == "mariadb" or 1 == 0
 
     - name: Configure the Ambari JDBC driver
       shell: /usr/sbin/ambari-server setup --jdbc-db={{ database | regex_replace('mariadb', 'mysql') }} --jdbc-driver={{ lookup('vars', database + '_jdbc_location') }}
