@@ -1,4 +1,5 @@
 - import_playbook: "set_variables.yml"
+
 - name: Load the Ambari Server schema (mysql)
   mysql_db:
     name: "{{ database_options.ambari_db_name }}"
