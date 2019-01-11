@@ -42,7 +42,7 @@
     insertafter: "^127..*$"
     state: present
   with_items:
-    - "{{ groups['hadoop-cluster']|sort(reverse=True) }}"
+    - "{{ groups['all']|sort(reverse=True) }}"
   when: not external_dns
 
 - name: Make sure /etc/security/limits.d exists
