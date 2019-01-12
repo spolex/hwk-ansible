@@ -168,7 +168,7 @@ blueprint_dynamic:                                        # properties for the d
 
 blueprint_dynamic:                                              # properties for the dynamic blueprint - these are only used by the 'blueprint_dynamic.j2' template to generate the JSON
   - host_group: "hdp-masternode-01"
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT','OOZIE_CLIENT']
     services:
       - ZOOKEEPER_SERVER
       - NAMENODE
@@ -180,7 +180,7 @@ blueprint_dynamic:                                              # properties for
       - HST_AGENT
       - METRICS_MONITOR
   - host_group: "hdp-masternode-02"
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'OOZIE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT','OOZIE_CLIENT']
     services:
       - ZOOKEEPER_SERVER
       - RESOURCEMANAGER
@@ -190,8 +190,9 @@ blueprint_dynamic:                                              # properties for
       - ACTIVITY_ANALYZER
       - HST_AGENT
       - METRICS_MONITOR
+      - OOZIE_SERVER
   - host_group: "hdp-management"
-    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT']
+    clients: ['ZOOKEEPER_CLIENT', 'HDFS_CLIENT', 'YARN_CLIENT', 'MAPREDUCE2_CLIENT', 'TEZ_CLIENT', 'PIG', 'SQOOP', 'HIVE_CLIENT', 'INFRA_SOLR_CLIENT', 'SPARK2_CLIENT','OOZIE_CLIENT']
     services:
       - RANGER_ADMIN
       - RANGER_USERSYNC
